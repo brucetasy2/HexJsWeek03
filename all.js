@@ -14,6 +14,9 @@ var app = new Vue({
                 is_enabled: 1,
                 imageUrl:
                     'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+                // options: {
+                //     aroma: 75,
+                // }
             },
             {
                 id: 'notDefine2',
@@ -27,10 +30,16 @@ var app = new Vue({
                 is_enabled: 0,
                 imageUrl:
                     'https://images.unsplash.com/photo-1578934830069-cde3d6bfb854?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80',
+                // options: {
+                //     aroma: 60,
+                // }
             },
         ],
         cloneDate: {
             imageUrl: [],
+            // options: { 
+            //     aroma : 0,
+            // },
         },
         editPanelName: '新增產品',
     },
@@ -54,7 +63,6 @@ var app = new Vue({
         delPrduct() {
             let delId = this.cloneDate.id;
             this.products.forEach((product, inx) => {
-                // console.log(`${product.id} and  ${inx}`);
                 if (product.id == delId) {
                     this.products.splice(inx, 1);
                 }
@@ -72,15 +80,14 @@ var app = new Vue({
                     $('#editPanel').modal('show');
                     this.editPanelName = '新增產品';
                     this.cloneDate = {
-                        imageUrl:[],
-                       };
+                        imageUrl: [],
+                    };
                     this.cloneDate.id = new Date().getTime();
                     break;
                 case 'edit': //修改模式
                     $('#editPanel').modal('show');
                     this.editPanelName = '修改產品';
                     this.cloneDate = JSON.parse(JSON.stringify(product));
-                    console.log(product);
                     break;
                 case 'delete': //刪除模式
                     $('#deletePanel').modal('show');
